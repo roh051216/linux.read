@@ -1,1 +1,50 @@
+## 부팅과 종료 
 
+
+#### 부팅 과정
+
+![[Pasted image 20251018120539.png]]
+
+
+- 바이오스 단계
+	- 전원 On => 바이오스 단계 => 부트로더(GRUB) => 커널 => systemd  
+- ![[Pasted image 20251017105608.png]]
+
+
+#### 부트 로더 단계
+
+- 우분투에서는 부트 로더로 GRUB을 사용
+- 부팅 할 때 GRUB 메뉴를 출력하려면 /etc/default/grub 파일을 수정해야함
+- sudo vi /etc/default/grub 후 수정
+- cat etc/default/grub : grub 메뉴 설정 내용이 저장되어있음
+	- GRUB 스크립력
+![[Pasted image 20251015110219.png]]
+
+
+
+
+
+
+#### 2025.09.18
+
+
+
+1. GRUB 화면 캡처  
+	1. ![[Pasted image 20251015174535.png]]
+2. GRUB에서 편집한 화면 캡처(ro => rw init=/bin/bash)  
+	1. ![[Pasted image 20251015111101.png]]
+3. 부팅이 완료된 이후 # 프롬프트가 뜬 화면 캡처(root@(none):/#)
+	1. ![[Pasted image 20251015111124.png]]
+
+
+#### 2025.10.02
+
+1. uname -a 실행 결과를 파일에 저장(출력 방향전환)
+	1. uname -a
+	2. uname -a > uname.txt
+2. sudo blkid 실행 결과를 파일에 저장(출력 방향전환)  
+	1. sudo blkid
+	2. sudo blkid > disk_info.txt
+3. 1~2번에서 만들어진 파일을 하나의 파일로 아카이빙 및 압축(gzip)
+	1. tar -czvf uname_report.tar.gz uname.txt disk_info.txt
+4. ![[Pasted image 20251019113929.png]]
